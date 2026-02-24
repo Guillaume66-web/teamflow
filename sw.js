@@ -1,28 +1,43 @@
-require('dotenv').config();
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
-const app = express();
+const CACHE_NAME = 'teamflow-v1';
+const ASSETS_TO_CACHE = [
+  '/',
+  '/app',
+  '/manifest.json',
+  '/icon-512.png',
+  '/logo-horizontal.png'
+];
 
-const PORT = process.env.PORT || 3000;
-
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Cette route permet à ton site de trouver le fichier sw.js à la racine
-app.get('/sw.js', (req, res) => {
-    res.sendFile(path.join(__dirname, 'sw.js'));
+// Installation du Service Worker et mise en cache des fichiers essentiels
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      console.log('TeamFlow: Mise en cache des fichiers...');
+      return cache.addAll(ASSETS_TO_CACHE);
+    })
+  );
 });
 
-// Cette route affiche ton application (app.ejs) dès qu'on arrive sur le lien
-app.get('/', (req, res) => {
-    res.render('app'); 
+// Activation et nettoyage des anciens caches
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cache) => {
+          if (cache !== CACHE_NAME) {
+            console.log('TeamFlow: Nettoyage ancien cache');
+            return caches.delete(cache);
+          }
+        })
+      );
+    })
+  );
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Serveur prêt sur le port ${PORT}`);
+// Stratégie : Réseau d'abord, sinon Cache (pour avoir toujours les derniers scores)
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    fetch(event.request).catch(() => {
+      return caches.match(event.request);
+    })
+  );
 });
