@@ -1,0 +1,19 @@
+{
+  "short_name": "TeamFlow",
+  "name": "TeamFlow - Application de Sport",
+  "description": "Gestion de matchs et d'équipes pour TeamFlow.",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#E85D2F",
+  "orientation": "portrait"
+}

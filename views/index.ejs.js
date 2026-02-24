@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeamFlow - Gestion de Matchs</title>
+
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#E85D2F">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="TeamFlow">
+    <link rel="apple-touch-icon" href="/icon-512.png">
+
+    <link rel="icon" type="image/png" href="/icon-512.png">
+
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        
+        /* Style pour la barre de navigation avec le logo */
+        nav { 
+            background-color: white; 
+            padding: 10px 20px; 
+            display: flex; 
+            align-items: center; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+        }
+        .logo-site { 
+            height: 50px; /* Ajuste la taille selon tes besoins */
+            width: auto;
+        }
+        
+        .container { padding: 20px; text-align: center; }
+        h1 { color: #333; }
+        .btn-add { background-color: #E85D2F; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img src="/logo-horizontal.png" alt="TeamFlow Logo" class="logo-site">
+    </nav>
+
+    <div class="container">
+        <h1>Bienvenue sur TeamFlow</h1>
+        <p>L'application de gestion de matchs pour ton équipe.</p>
+        
+        <br><br>
+        <a href="/ajouter-match" class="btn-add">Ajouter un nouveau match</a>
+    </div>
+
+</body>
+</html>
