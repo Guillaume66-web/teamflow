@@ -1,24 +1,14 @@
 {
-  "name": "teamflow-app",
+  "name": "teamflow",
   "version": "1.0.0",
-  "description": "Application de gestion de matchs de sport",
+  "description": "Application de gestion de matchs",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node server.js"
   },
-  "keywords": [
-    "sport",
-    "match",
-    "teamflow"
-  ],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "ejs": "^3.1.10",
-    "express": "^4.21.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
+    "express": "^4.18.2",
+    "ejs": "^3.1.9",
+    "dotenv": "^16.3.1"
   }
 }
