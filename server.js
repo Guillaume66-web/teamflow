@@ -2,25 +2,25 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-// Configuration simplifiée
+// Configuration des dossiers (Crucial pour Render)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Dossier public pour tes images et le manifest
+// Accès aux images et au manifest dans /public
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Route principale vers ton fichier app.ejs
+// Route principale : affiche ton appli
 app.get('/', (req, res) => {
     res.render('app'); 
 });
 
-// Route pour le Service Worker
+// Route pour le Service Worker (PWA)
 app.get('/sw.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'sw.js'));
 });
 
-// Port pour Render
+// Port dynamique pour Render
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
-    console.log("Serveur TeamFlow en ligne !");
+    console.log("TeamFlow est démarré !");
 });
